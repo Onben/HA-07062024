@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+    
+      - name: Change to specific directory
+        run: cd mock-api-example
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: mock-api-example
+        
+      - name: Build
+        run: npm run build
+        working-directory: mock-api-example
+
+      - name: Test APIs
+        run: npm test 
+        working-directory: mock-api-example
